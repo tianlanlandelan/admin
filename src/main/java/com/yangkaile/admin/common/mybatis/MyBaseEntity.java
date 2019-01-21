@@ -8,16 +8,17 @@ import java.util.Map;
  * @date 2018-11-29 14:10:24
  */
 public class MyBaseEntity {
+    
     private int id;
     private int pageSize ;
     private int startRows ;
-    private String allFields;
+    private String defaultFields;
     private String tableName;
     private Map<String,String> fieldMap;
 
-    public MyBaseEntity(String tableName,String allFields,Map<String,String> fieldMap){
+    public MyBaseEntity(String tableName,String defaultFields,Map<String,String> fieldMap){
         this.tableName = tableName;
-        this.allFields = allFields;
+        this.defaultFields = defaultFields;
         this.fieldMap = fieldMap;
     }
 
@@ -37,8 +38,8 @@ public class MyBaseEntity {
         this.startRows = startRows;
     }
 
-    public String getAllFields() {
-        return allFields;
+    public String getDefaultFields() {
+        return defaultFields;
     }
 
     public String getTableName() {
@@ -62,7 +63,7 @@ public class MyBaseEntity {
                 "id=" + id +
                 ", pageSize=" + pageSize +
                 ", startRows=" + startRows +
-                ", allFields='" + allFields + '\'' +
+                ", defaultFields='" + defaultFields + '\'' +
                 ", tableName='" + tableName + '\'' +
                 ", fieldMap=" + fieldMap +
                 '}';

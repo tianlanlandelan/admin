@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class MyBaseUtils {
     /**
-     *
+     *  baseEntityMap key:表名 value:MyBaseEntity对象
      */
     private static HashMap<String,MyBaseEntity> baseEntityMap = new HashMap<>(16);
 
@@ -31,7 +31,7 @@ public class MyBaseUtils {
         if(baseEntity == null){
            return  putBaseEntity(entity);
         }
-        return new MyBaseEntity(baseEntity.getTableName(),baseEntity.getAllFields(),baseEntity.getFieldMap());
+        return new MyBaseEntity(baseEntity.getTableName(),baseEntity.getDefaultFields(),baseEntity.getFieldMap());
     }
 
     /**

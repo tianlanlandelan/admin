@@ -17,6 +17,7 @@ import java.util.List;
 public interface RouterMapper extends MyBaseMapper {
     String tableName = "usermanager_router";
     String roleRouters = "usermanager_role_routers";
+
      @Select({"SELECT a.id,a.name, a.serviceName, a.controllerName, a.methodName, a.routerUrl,a.requestType "
              + " FROM " + tableName + " a ," + roleRouters + " b "
              + " WHERE a.id = b.routerId AND b.roleId = #{roleId}"
