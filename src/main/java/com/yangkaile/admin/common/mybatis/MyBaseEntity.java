@@ -8,18 +8,40 @@ import java.util.Map;
  * @date 2018-11-29 14:10:24
  */
 public class MyBaseEntity {
-    
-    private int id;
-    private int pageSize ;
-    private int startRows ;
-    private String defaultFields;
-    private String tableName;
-    private Map<String,String> fieldMap;
 
-    public MyBaseEntity(String tableName,String defaultFields,Map<String,String> fieldMap){
+    /**
+     * id
+     */
+    private int id;
+    /**
+     * 分页查询时设置的页面大小
+     */
+    private int pageSize ;
+    /**
+     * 分页查询时设置的起始行
+     */
+    private int startRows ;
+    /**
+     * 默认查询字段
+     */
+    private String defaultFields;
+    /**
+     * 表名
+     */
+    private String tableName;
+
+
+//    private Map<String,String> fieldMap;
+//
+//    public MyBaseEntity(String tableName,String defaultFields,Map<String,String> fieldMap){
+//        this.tableName = tableName;
+//        this.defaultFields = defaultFields;
+//       this.fieldMap = fieldMap;
+//    }
+
+    public MyBaseEntity(String tableName,String defaultFields){
         this.tableName = tableName;
         this.defaultFields = defaultFields;
-        this.fieldMap = fieldMap;
     }
 
     public int getPageSize() {
@@ -53,9 +75,9 @@ public class MyBaseEntity {
     public void setId(int id) {
         this.id = id;
     }
-    public Map<String, String> getFieldMap() {
-        return fieldMap;
-    }
+//    public Map<String, String> getFieldMap() {
+//        return fieldMap;
+//    }
 
     @Override
     public String toString() {
@@ -65,7 +87,7 @@ public class MyBaseEntity {
                 ", startRows=" + startRows +
                 ", defaultFields='" + defaultFields + '\'' +
                 ", tableName='" + tableName + '\'' +
-                ", fieldMap=" + fieldMap +
+//                ", fieldMap=" + fieldMap +
                 '}';
     }
 }

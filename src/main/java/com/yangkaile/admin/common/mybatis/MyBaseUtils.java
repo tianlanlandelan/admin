@@ -1,7 +1,6 @@
 package com.yangkaile.admin.common.mybatis;
 
 import com.yangkaile.admin.common.response.ResultData;
-import com.yangkaile.admin.common.router.MyRouter;
 import com.yangkaile.admin.common.util.ConfigUtils;
 import com.yangkaile.admin.usermanager.entity.Role;
 
@@ -53,11 +52,12 @@ public class MyBaseUtils {
         //带@FieldAttribute注解的属性名
         StringBuilder builder = new StringBuilder();
         //所有属性名
-        StringBuilder allFields = new StringBuilder();
+        StringBuilder defaultFields = new StringBuilder();
         Map<String,String> map = new HashMap<>(16);
+        //从属性前的@FieldAttribute注解解析要查询的字段名,当所有属性都没有@FieldAttribute注解时，解析所有属性名作为字段名
         for(Field field:fields){
             map.put(field.getName(),field.getType().getSimpleName());
-            allFields.append(field.getName()).append(",");
+            defaultFields.append(field.getName()).append(",");
             if(field.getAnnotation(FieldAttribute.class) != null){
                 builder.append(field.getName()).append(",");
             }
@@ -65,8 +65,8 @@ public class MyBaseUtils {
 
         if(builder.length() > 0){
             fieldsStr = builder.substring(0,builder.length() - 1);
-        }else if(allFields.length() > 0){
-            fieldsStr = allFields.substring(0,allFields.length() - 1);
+        }else if(defaultFields.length() > 0){
+            fieldsStr = defaultFields.substring(0,defaultFields.length() - 1);
         }else {
             return  null;
         }
