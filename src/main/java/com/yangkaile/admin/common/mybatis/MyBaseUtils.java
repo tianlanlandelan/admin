@@ -102,6 +102,7 @@ public class MyBaseUtils {
 
     public static void main(String[] args){
         MyBaseEntity entity = MyBaseUtils.getBaseEntity(Role.class);
+        entity.setCustomizedFields("id","name","sex");
         System.out.println(entity);
     }
 }

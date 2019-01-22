@@ -22,13 +22,23 @@ import java.util.Map;
 public interface MyBaseMapper {
 
     /**
-     * 根据Id查询记录
+     * 根据Id查询记录, 返回默认字段，不区分状态
      * @param map
      * @param <T> 包含defaultFields(查询字段列表)、tableName(表名)、id(记录ID)属性的对象
      * @return
      */
     @Select("SELECT ${defaultFields} FROM ${tableName} WHERE id = #{id}")
     <T> Map<String,Object> baseGetById(T map);
+
+    /**
+     * 根据Id查询记录，返回自定义字段，不区分状态
+     * @param map
+     * @param <T>
+     * @return
+     */
+    @Select("SELECT ${customizedFields} FROM ${tableName} WHERE id = #{id}")
+    <T> Map<String,Object> baseGetCustomizedFieldsById(T map);
+
 
     /**
      * 根据Id查询记录（不包含已删除的记录）
@@ -41,6 +51,15 @@ public interface MyBaseMapper {
     <T> Map<String,Object> baseGetByIdNotDelete(T map);
 
     /**
+     * 返回自定义字段
+     * @param map
+     * @param <T>
+     * @return
+     */
+    @Select("SELECT ${customizedFields} FROM ${tableName} WHERE id = #{id} AND isDelete = isDelete")
+    <T> Map<String,Object> baseGetustomizedFieldsByIdNotDelete(T map);
+
+    /**
      * 查询全量列表
      * 使用${}方式解析表名和查询字段列表，避免mybatis解析时将其加上单引号
      * @param map
@@ -49,6 +68,16 @@ public interface MyBaseMapper {
      */
     @Select("SELECT ${defaultFields} FROM ${tableName}")
     <T> List<Map<String,Object>> baseGetAll(T map);
+
+    /**
+     * 返回自定义字段
+     * @param map
+     * @param <T>
+     * @return
+     */
+    @Select("SELECT ${customizedFields} FROM ${tableName}")
+    <T> List<Map<String,Object>> baseGetAllCustomizedFields(T map);
+
     /**
      * 查询全量列表（不包含已删除的记录）
      * 使用该方法时数据库字段的限制：数值型的isDelete字段 0 表示正常数据；1 表示数据已删除
@@ -60,6 +89,15 @@ public interface MyBaseMapper {
     <T> List<Map<String,Object>> baseGetAllNotDelete(T map);
 
     /**
+     * 返回自定义字段
+     * @param map
+     * @param <T>
+     * @return
+     */
+    @Select("SELECT ${customizedFields} FROM ${tableName} WHERE isDelete = 0")
+    <T> List<Map<String,Object>> baseGetAllCustomizedFieldsNotDelete(T map);
+
+    /**
      * 分页查询
      * @param map
      * @param <T> 包含defaultFields(查询字段列表)、tableName(表名)、startRows(分页查询开始记录行号)、pageSize(页面大小)属性的对象
@@ -67,6 +105,15 @@ public interface MyBaseMapper {
      */
     @Select("SELECT ${defaultFields} FROM ${tableName} router LIMIT #{startRows},#{pageSize}")
     <T> List<Map<String,Object>> baseGetPageList(T map);
+
+    /**
+     * 返回自定义字段
+     * @param map
+     * @param <T>
+     * @return
+     */
+    @Select("SELECT ${customizedFields} FROM ${tableName} router LIMIT #{startRows},#{pageSize}")
+    <T> List<Map<String,Object>> baseGetPageListCustomizedFields(T map);
 
     /**
      * 分页查询（不包含已删除的记录）
@@ -77,6 +124,15 @@ public interface MyBaseMapper {
      */
     @Select("SELECT ${defaultFields} FROM ${tableName} router WHERE isDelete = 0  LIMIT #{startRows},#{pageSize}")
     <T> List<Map<String,Object>> baseGetPageListNotDelete(T map);
+
+    /**
+     * 返回自定义字段
+     * @param map
+     * @param <T>
+     * @return
+     */
+    @Select("SELECT ${customizedFields} FROM ${tableName} router WHERE isDelete = 0  LIMIT #{startRows},#{pageSize}")
+    <T> List<Map<String,Object>> baseGetPageListCustomizedFieldsNotDelete(T map);
 
     /**
      * 查询总记录数（包含全部数据）

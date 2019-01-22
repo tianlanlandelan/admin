@@ -30,6 +30,11 @@ public class MyBaseEntity {
      */
     private String tableName;
 
+    /**
+     * 自定义字段
+     */
+    private String customizedFields;
+
 
 //    private Map<String,String> fieldMap;
 //
@@ -75,7 +80,25 @@ public class MyBaseEntity {
     public void setId(int id) {
         this.id = id;
     }
-//    public Map<String, String> getFieldMap() {
+
+    public String getCustomizedFields() {
+        return customizedFields;
+    }
+
+    public void setCustomizedFields(String ... field) {
+        StringBuilder builder = new StringBuilder();
+        for(int i = 0 ; i < field.length ; i ++){
+            if(i >= field.length -1){
+                builder.append(field[i]);
+
+            }else {
+                builder.append(field[i]).append(",");
+            }
+        }
+        this.customizedFields = builder.toString();
+    }
+
+    //    public Map<String, String> getFieldMap() {
 //        return fieldMap;
 //    }
 
@@ -87,7 +110,7 @@ public class MyBaseEntity {
                 ", startRows=" + startRows +
                 ", defaultFields='" + defaultFields + '\'' +
                 ", tableName='" + tableName + '\'' +
-//                ", fieldMap=" + fieldMap +
+                ", customizedFields=" + customizedFields +
                 '}';
     }
 }
