@@ -30,7 +30,7 @@ public class MyBaseUtils {
         if(baseEntity == null){
            return  putBaseEntity(entity);
         }
-        return new MyBaseEntity(baseEntity.getTableName(),baseEntity.getDefaultFields(),baseEntity.getFieldMap());
+        return new MyBaseEntity(baseEntity.getTableName(),baseEntity.getDefaultFields());
     }
 
     /**
@@ -53,10 +53,10 @@ public class MyBaseUtils {
         StringBuilder builder = new StringBuilder();
         //所有属性名
         StringBuilder defaultFields = new StringBuilder();
-        Map<String,String> map = new HashMap<>(16);
+//        Map<String,String> map = new HashMap<>(16);
         //从属性前的@FieldAttribute注解解析要查询的字段名,当所有属性都没有@FieldAttribute注解时，解析所有属性名作为字段名
         for(Field field:fields){
-            map.put(field.getName(),field.getType().getSimpleName());
+//            map.put(field.getName(),field.getType().getSimpleName());
             defaultFields.append(field.getName()).append(",");
             if(field.getAnnotation(FieldAttribute.class) != null){
                 builder.append(field.getName()).append(",");
@@ -70,9 +70,9 @@ public class MyBaseUtils {
         }else {
             return  null;
         }
-        MyBaseEntity baseEntity = new MyBaseEntity(tableName,fieldsStr,map);
+        MyBaseEntity baseEntity = new MyBaseEntity(tableName,fieldsStr);
         baseEntityMap.put(key,baseEntity);
-        return new MyBaseEntity(tableName,fieldsStr,map);
+        return new MyBaseEntity(tableName,fieldsStr);
     }
 
     /**

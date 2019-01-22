@@ -40,29 +40,29 @@ public class SMSController {
      * @param phone
      * @return
      */
-    @RouterAttribute(id = MyPublicServiceRouter.SEND_VERIFICATION_CODE_SMS, description = "发送验证码短信")
-    @RequestMapping(value = "/sendVerificationCode",method = RequestMethod.GET)
-    public ResponseEntity sendVerificationCode(String phone){
-        if(phone == null || phone.isEmpty()){
-            return MyResponse.badRequest();
-        }
-        SMSEntity entity = SendSMSUtils.sendVerificationCode(phone);
-        Map<String,Object> map = new HashMap<>(16);
-        map.put("phone",entity.getPhone());
-        map.put("type",entity.getType());
-        map.put("codeStr",entity.getCodeStr());
-        map.put("result",entity.getResult());
-        map.put("statusCode",entity.getStatusCode());
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity(MyRouters.getRouterUrl(MyLogRouter.INSERT_SMS_SEND_LOG) +
-                "?phone={phone}&type={type}&message={message}&codeStr={codeStr}" +
-                "&result={result}&statusCode={statusCode}",null,String.class,map);
-        logger.info("SMSEntity Ok  Response:" + responseEntity.getBody() + ",entity:" + entity);
-
-        if(SendSMSUtils.RESULT_SUCCESS_CODE.equals(entity.getStatusCode())){
-            return MyResponse.ok(ResultData.success());
-        }else {
-            return MyResponse.ok(ResultData.error("验证码发送失败"));
-        }
-
-    }
+//    @RouterAttribute(id = MyPublicServiceRouter.SEND_VERIFICATION_CODE_SMS, description = "发送验证码短信")
+//    @RequestMapping(value = "/sendVerificationCode",method = RequestMethod.GET)
+//    public ResponseEntity sendVerificationCode(String phone){
+//        if(phone == null || phone.isEmpty()){
+//            return MyResponse.badRequest();
+//        }
+//        SMSEntity entity = SendSMSUtils.sendVerificationCode(phone);
+//        Map<String,Object> map = new HashMap<>(16);
+//        map.put("phone",entity.getPhone());
+//        map.put("type",entity.getType());
+//        map.put("codeStr",entity.getCodeStr());
+//        map.put("result",entity.getResult());
+//        map.put("statusCode",entity.getStatusCode());
+//        ResponseEntity<String> responseEntity = restTemplate.postForEntity(MyRouters.getRouterUrl(MyLogRouter.INSERT_SMS_SEND_LOG) +
+//                "?phone={phone}&type={type}&message={message}&codeStr={codeStr}" +
+//                "&result={result}&statusCode={statusCode}",null,String.class,map);
+//        logger.info("SMSEntity Ok  Response:" + responseEntity.getBody() + ",entity:" + entity);
+//
+//        if(SendSMSUtils.RESULT_SUCCESS_CODE.equals(entity.getStatusCode())){
+//            return MyResponse.ok(ResultData.success());
+//        }else {
+//            return MyResponse.ok(ResultData.error("验证码发送失败"));
+//        }
+//
+//    }
 }

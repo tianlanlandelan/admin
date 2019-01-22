@@ -9,7 +9,7 @@ import java.util.Date;
  * @author yangkaile
  * @date 2018-11-29 19:58:37
  */
-@TableAttribute("user_roles")
+@TableAttribute("usermanager_user_roles")
 public class UserRoles {
 
     /**

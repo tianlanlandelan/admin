@@ -1,5 +1,5 @@
 package com.yangkaile.admin.externalservice.utils;
-import com.cloopen.rest.sdk.CCPRestSmsSDK;
+//import com.cloopen.rest.sdk.CCPRestSmsSDK;
 import com.yangkaile.admin.common.util.StringUtils;
 import com.yangkaile.admin.externalservice.ExternalServiceConfig;
 import com.yangkaile.admin.externalservice.entity.SMSEntity;
@@ -37,51 +37,51 @@ public class SendSMSUtils {
      * 初始化短信发送SDK
      * @return
      */
-    public static CCPRestSmsSDK init(){
-        CCPRestSmsSDK restAPI = new CCPRestSmsSDK();
-        restAPI.init(SERVER_IP, SERVER_PORT);
-        restAPI.setAccount(ACCOUNT_SID, ACCOUNT_TOKEN);
-        restAPI.setAppId(App_ID);
-        return restAPI;
-    }
+//    public static CCPRestSmsSDK init(){
+//        CCPRestSmsSDK restAPI = new CCPRestSmsSDK();
+//        restAPI.init(SERVER_IP, SERVER_PORT);
+//        restAPI.setAccount(ACCOUNT_SID, ACCOUNT_TOKEN);
+//        restAPI.setAppId(App_ID);
+//        return restAPI;
+//    }
 
     /**
      * 通用的短信发送逻辑
      * @param entity
      * @return
      */
-    public static SMSEntity sendSMS(SMSEntity entity){
-        HashMap<String, Object> result;
-        result = init().sendTemplateSMS(entity.getPhone(),entity.getTemplateId(),
-                new String[]{entity.getCodeStr(),entity.getMinuteStr()});
-        logger.info(result.toString());
-        entity.setResult(result.toString());
-        entity.setStatusCode(result.get(RESULT_STATUS_CODE).toString());
-        return entity;
-    }
+//    public static SMSEntity sendSMS(SMSEntity entity){
+//        HashMap<String, Object> result;
+//        result = init().sendTemplateSMS(entity.getPhone(),entity.getTemplateId(),
+//                new String[]{entity.getCodeStr(),entity.getMinuteStr()});
+//        logger.info(result.toString());
+//        entity.setResult(result.toString());
+//        entity.setStatusCode(result.get(RESULT_STATUS_CODE).toString());
+//        return entity;
+//    }
 
     /**
      * 发送短信验证码
      * @param phone 手机号
      * @return
      */
-    public static SMSEntity sendVerificationCode(String phone){
-        SMSEntity entity = new SMSEntity(phone,ExternalServiceConfig.SMS_SEND_TYPE_REGISTER);
-        entity.setTemplateId(ExternalServiceConfig.SMS_SEND_TEMPLATE_ID_REGISTER);
-        entity.setCodeStr(StringUtils.getNumbserString(ExternalServiceConfig.SMS_SEND_LENGTH));
-        entity.setMinuteStr(ExternalServiceConfig.SMS_SEND_MINUTE_REGISTER);
-        return sendSMS(entity);
-    }
+//    public static SMSEntity sendVerificationCode(String phone){
+//        SMSEntity entity = new SMSEntity(phone,ExternalServiceConfig.SMS_SEND_TYPE_REGISTER);
+//        entity.setTemplateId(ExternalServiceConfig.SMS_SEND_TEMPLATE_ID_REGISTER);
+//        entity.setCodeStr(StringUtils.getNumbserString(ExternalServiceConfig.SMS_SEND_LENGTH));
+//        entity.setMinuteStr(ExternalServiceConfig.SMS_SEND_MINUTE_REGISTER);
+//        return sendSMS(entity);
+//    }
 
     /**
      * @param args
      */
     public static void main(String[] args) {
-            SMSEntity entity = new SMSEntity("17600109114",ExternalServiceConfig.SMS_SEND_TYPE_REGISTER);
-            entity.setTemplateId("1");
-            entity.setCodeStr(StringUtils.getNumbserString(ExternalServiceConfig.SMS_SEND_LENGTH));
-            entity.setMinuteStr("10");
-            sendSMS(entity);
+//            SMSEntity entity = new SMSEntity("17600109114",ExternalServiceConfig.SMS_SEND_TYPE_REGISTER);
+//            entity.setTemplateId("1");
+//            entity.setCodeStr(StringUtils.getNumbserString(ExternalServiceConfig.SMS_SEND_LENGTH));
+//            entity.setMinuteStr("10");
+//            sendSMS(entity);
 //        HashMap<String, Object> result = null;
 
         //初始化SDK

@@ -8,7 +8,7 @@ import java.util.Date;
  * @author yangkaile
  * @date 2018-11-29 19:54:04
  */
-@TableAttribute("role_routers")
+@TableAttribute("usermanager_role_routers")
 public class RoleRouters {
     /**
     * 角色ID

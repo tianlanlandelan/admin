@@ -8,7 +8,7 @@ import java.util.Date;
  * @author 杨凯乐
  * @date 2018-08-02 09:33:01
  */
-@TableAttribute("router")
+@TableAttribute("usermanager_router")
 public class Router {
     /**
      * 接口ID

@@ -8,7 +8,7 @@ import java.util.Date;
  * @author  杨凯乐
  * @date 2018-08-11 13:30:33
  */
-@TableAttribute("role")
+@TableAttribute("usermanager_role")
 public class Role {
     /**
     * 角色ID
