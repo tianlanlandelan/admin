@@ -33,8 +33,7 @@ public class RouterService {
 
 
     public ResultData getAll(){
-//        baseEntity.setCustomizedFields("requestType","controllerName","routerUrl");
-//        return ResultData.success(routerMapper.baseGetAllCustomizedFields(baseEntity));
+
         return ResultData.success(routerMapper.baseGetAll(baseEntity));
     }
     public ResultData getRoutersByRoleId(int roleId){
